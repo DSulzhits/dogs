@@ -1,0 +1,74 @@
+[
+  {
+    "model": "dogs.category",
+    "pk": 1,
+    "fields": {
+      "name": "Овчарка",
+      "description": "Большая и пушистая"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 2,
+    "fields": {
+      "name": "Колли",
+      "description": "Красивая, снималась в кино"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 3,
+    "fields": {
+      "name": "Кинг Чарльз Спаниель",
+      "description": "Очень милая порода и ленивая"
+    }
+  },
+  {
+    "model": "dogs.category",
+    "pk": 4,
+    "fields": {
+      "name": "Чихуахуа",
+      "description": "Концентрация злобы"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 1,
+    "fields": {
+      "name": "Пушок",
+      "category": 1,
+      "photo": "dogs/Sheperd.jpg",
+      "birth_date": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 2,
+    "fields": {
+      "name": "Лесси",
+      "category": 2,
+      "photo": "dogs/colly_nnep3u5.jpg",
+      "birth_date": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 3,
+    "fields": {
+      "name": "маленькая леди",
+      "category": 3,
+      "photo": "dogs/King_Charles.jpg",
+      "birth_date": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 4,
+    "fields": {
+      "name": "Рен",
+      "category": 4,
+      "photo": "",
+      "birth_date": null
+    }
+  }
+]
