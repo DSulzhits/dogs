@@ -48,7 +48,7 @@
       "name": "Лесси",
       "category": 2,
       "photo": "dogs/colly_nnep3u5.jpg",
-      "birth_date": null
+      "birth_date": "2020-01-05"
     }
   },
   {
@@ -58,7 +58,7 @@
       "name": "маленькая леди",
       "category": 3,
       "photo": "dogs/King_Charles.jpg",
-      "birth_date": null
+      "birth_date": "2020-01-05"
     }
   },
   {
@@ -69,6 +69,46 @@
       "category": 4,
       "photo": "",
       "birth_date": null
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 8,
+    "fields": {
+      "name": "Test",
+      "category": 3,
+      "photo": "",
+      "birth_date": "2022-01-01"
+    }
+  },
+  {
+    "model": "dogs.dog",
+    "pk": 9,
+    "fields": {
+      "name": "Шелли",
+      "category": 2,
+      "photo": "",
+      "birth_date": "2022-01-01"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 1,
+    "fields": {
+      "dog": 2,
+      "name": "Лесси Старшая",
+      "category": 2,
+      "birth_date": "2010-01-01"
+    }
+  },
+  {
+    "model": "dogs.parent",
+    "pk": 2,
+    "fields": {
+      "dog": 2,
+      "name": "Лесси Папа Старший",
+      "category": 2,
+      "birth_date": "2009-01-01"
     }
   }
 ]
