@@ -2,10 +2,10 @@ from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from config import settings
-from users.forms import UserForm
+from users.forms import UserRegisterForm, UserForm
 from users.models import User
 
 
@@ -19,7 +19,7 @@ class LogoutView(BaseLogoutView):
 
 class RegisterView(CreateView):
     model = User
-    form_class = UserForm
+    form_class = UserRegisterForm
     success_url = reverse_lazy('users:login')
     template_name = 'users/register.html'
 
@@ -34,3 +34,12 @@ class RegisterView(CreateView):
             # recipient_list=[new_user.email]
         )
         return super().form_valid(form)
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    success_url = reverse_lazy('users:profile')
+    form_class = UserForm
+
+    def get_object(self, queryset=None):  # Позволяет не передавать доп. информацию, а редактирует того кто зашел
+        return self.request.user
