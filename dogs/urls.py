@@ -10,5 +10,5 @@ urlpatterns = [
     path('categories/', categories, name='categories'),
     path('<int:pk>/dogs/', category_dogs, name='category_dogs'),
     path('<int:pk>/dogs/create/', DogCreateView.as_view(), name='dog_create'),
-    path('/dogs/<int:pk>/update/', DogUpdateView.as_view(), name='dog_update')
+    path('dogs/<int:pk>/update/', DogUpdateView.as_view(), name='dog_update')
 ]
