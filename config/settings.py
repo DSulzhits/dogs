@@ -78,7 +78,7 @@ postgres_key = os.getenv('POSTGRESSQL_KEY')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dogs',
+        'NAME': 'shelter',
         'USER': 'postgres',
         'PASSWORD': postgres_key
     }
