@@ -26,7 +26,7 @@ def categories(request):
 def category_dogs(request, pk):
     category_item = Category.objects.get(pk=pk)
     context = {
-        'object_list': Dog.objects.filter(category_id=pk),
+        'object_list': Dog.objects.filter(category_id=pk, owner=request.user),
         'category_pk': category_item.pk,
         'title': f'Собаки породы - {category_item.name}',
     }
@@ -37,6 +37,13 @@ class DogCreateView(CreateView):
     model = Dog
     form_class = DogForm
     success_url = reverse_lazy('dogs:categories')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
+
+        return super().form_valid(form)
 
 
 class DogUpdateView(UpdateView):
