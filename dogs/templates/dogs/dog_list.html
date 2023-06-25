@@ -2,9 +2,11 @@
 {% load my_tags %}
 {% block content %}
     <div class="row">
-        <div class="col-12">
-            <a class="btn btn-primary" href="{% url 'dogs:dog_create' category_pk %}">Добавить собаку</a>
-        </div>
+        {% if perms.dogs.add_dog %}
+            <div class="col-12">
+                <p><a class="btn btn-primary" href="{% url 'dogs:dog_create' category_pk %}">Добавить собаку</a></p>
+            </div>
+        {% endif %}
         {% for object in object_list %}
             <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
