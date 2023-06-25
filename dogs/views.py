@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -7,6 +9,7 @@ from dogs.forms import DogForm, ParentForm
 from dogs.models import Category, Dog, Parent
 
 
+@login_required
 def index(request):
     context = {
         'object_list': Category.objects.all()[:3],
@@ -15,6 +18,7 @@ def index(request):
     return render(request, 'dogs/index.html', context)
 
 
+@login_required
 def categories(request):
     context = {
         'object_list': Category.objects.all(),
@@ -23,6 +27,7 @@ def categories(request):
     return render(request, 'dogs/categories.html', context)
 
 
+@login_required
 def category_dogs(request, pk):
     category_item = Category.objects.get(pk=pk)
     context = {
@@ -33,7 +38,7 @@ def category_dogs(request, pk):
     return render(request, 'dogs/dogs.html', context)
 
 
-class DogCreateView(CreateView):
+class DogCreateView(LoginRequiredMixin, CreateView):
     model = Dog
     form_class = DogForm
     success_url = reverse_lazy('dogs:categories')
@@ -46,7 +51,7 @@ class DogCreateView(CreateView):
         return super().form_valid(form)
 
 
-class DogUpdateView(UpdateView):
+class DogUpdateView(LoginRequiredMixin, UpdateView):
     model = Dog
     form_class = DogForm
 
