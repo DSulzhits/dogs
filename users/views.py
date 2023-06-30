@@ -2,14 +2,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth.views import LogoutView as BaseLogoutView
-from django.core.mail import send_mail
+
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView
 
-from config import settings
 from users.forms import UserRegisterForm, UserForm
 from users.models import User
+from users.services import send_register_email, send_new_password
 import random
 
 
@@ -30,13 +30,7 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         self.object = form.save()
         # new_user = form.save()
-        send_mail(
-            subject='Поздравляем с регистрацией',
-            message='Вы зарегистрировались на нашей платформе, добро пожаловать!',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[self.object.email]
-            # recipient_list=[new_user.email]
-        )
+        send_register_email(self.object.email)
         return super().form_valid(form)
 
 
@@ -52,12 +46,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 @login_required
 def generate_new_password(request):
     new_password = ''.join([str(random.randint(0, 9)) for _ in range(12)])
-    send_mail(
-        subject='Вы сменили пароль',
-        message=f'Ваш новый пароль: {new_password}',
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[request.user.email]
-    )
     request.user.set_password(new_password)
     request.user.save()
+    send_new_password(request.user.email, new_password)
     return redirect(reverse('dogs:index'))
