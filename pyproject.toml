@@ -12,6 +12,7 @@ python-dotenv = "^1.0.0"
 psycopg2 = "^2.9.6"
 pillow = "^9.5.0"
 ipython = "^8.14.0"
+redis = "^4.6.0"
 
 
 [build-system]
